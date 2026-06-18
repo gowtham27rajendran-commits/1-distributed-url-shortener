@@ -3,7 +3,7 @@ import os
 from typing import Optional
 
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
-CACHE_TTL = 86400  # 24h — LRU eviction handles memory pressure
+CACHE_TTL = 86400  
 
 _client: Optional[redis.Redis] = None
 
