@@ -42,14 +42,7 @@ def generate_short_code(custom_alias: Optional[str] = None) -> str:
 
 
 class TokenBucketRateLimiter:
-    """
-    Token bucket > fixed window because it handles burst traffic gracefully.
-    Fixed window: 100 reqs at 00:59 + 100 reqs at 01:00 = 200 in 2 seconds. Bad.
-    Token bucket: burst allowed up to capacity, but average is enforced.
-
-    Production: store bucket state in Redis for distributed workers.
-    Key: ratelimit:{ip} → JSON{tokens, last_refill_ts}
-    """
+    
     def __init__(self, capacity: int = 100, refill_rate: float = 100 / 60):
         self.capacity = capacity
         self.refill_rate = refill_rate  # tokens/second
