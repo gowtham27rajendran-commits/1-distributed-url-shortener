@@ -44,7 +44,7 @@ async def get_stats(short_code: str):
 
 @router.get("/{short_code}")
 async def redirect_url(short_code: str, request: Request):
-    # 1. Cache check (sub-millisecond)
+    # 1. Cache checking  (sub-millisecond)
     original_url = await get_url(short_code)
 
     if not original_url:
